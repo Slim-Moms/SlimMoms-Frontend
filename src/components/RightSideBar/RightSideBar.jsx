@@ -9,7 +9,6 @@ const RightSideBar = () => {
   const notAllowedProducts = useSelector(selectNotAllowedProducts);
   
   // Henüz giriş yapılmadıysa veya hesaplama yoksa varsayılan değerler
-  // Not: Giriş yapmış kullanıcı için ileride "auth" selectorları da eklenecek.
   const caloriesLeft = dailyRate || 0;
   const caloriesConsumed = 0; // İleride ürün eklendikçe değişecek
   const percentage = dailyRate ? Math.round((caloriesConsumed / dailyRate) * 100) : 0;

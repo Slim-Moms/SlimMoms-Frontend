@@ -1,14 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
+// Canlıya geçince burayı değiştirecem
+
 axios.defaults.baseURL = 'http://localhost:3000/api'; // Backend adresi
 
 export const fetchDailyRate = createAsyncThunk(
   'diet/fetchDailyRate',
   async (userData, thunkAPI) => {
     try {
-      // Backend beklenen format: { height, age, currentWeight, desiredWeight, bloodType }
-      // Backend controller'da "currentWeight" kullanılıyor, formda "weight" var. Dönüştürmeliyiz.
       const payload = {
         height: Number(userData.height),
         age: Number(userData.age),
