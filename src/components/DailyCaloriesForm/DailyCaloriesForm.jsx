@@ -1,54 +1,51 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { validateForm } from "./validations";
-import DailyCalorieIntake from "../DailyCalorieIntake/DailyCalorieIntake";
-import Modal from "../Modal/Modal"; // Modal bileşenini buradan içe aktar
-import "./DailyCaloriesForm.css";
+// import React, { useState } from "react";
+// import DailyCalorieIntake from "../DailyCalorieIntake/DailyCalorieIntake";
+// import Modal from "../Modal/Modal";
+// import { validateForm } from "./validations";
+// import "./DailyCaloriesForm.css";
 
-export default function DailyCaloriesForm() {
-  const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    height: "",
-    desiredWeight: "",
-    age: "",
-    bloodType: "",
-    currentWeight: "",
-  });
-  const [errors, setErrors] = useState({});
-  const [showModal, setShowModal] = useState(false);
+// export default function DailyCaloriesForm() {
+//   const [formData, setFormData] = useState({
+//     height: "",
+//     desiredWeight: "",
+//     age: "",
+//     bloodType: "",
+//     currentWeight: "",
+//   });
+//   const [errors, setErrors] = useState({});
+//   const [showModal, setShowModal] = useState(false);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+//   const handleChange = (e) => {
+//     setFormData({ ...formData, [e.target.name]: e.target.value });
+//   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm(formData); // Form doğrulama
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const validationErrors = validateForm(formData); // Yönerge: Doğrulama işlemi
 
-    if (Object.keys(validationErrors).length === 0) {
-      setErrors({});
-      setShowModal(true); // Hesaplama sonrası Modal açılışı
-      // Buraya hesaplama action'ı veya operation'ı eklenebilir
-    } else {
-      setErrors(validationErrors);
-    }
-  };
+//     if (Object.keys(validationErrors).length === 0) {
+//       setErrors({});
+//       setShowModal(true); // Yönerge: Modal açılmasını tetikle
+//     } else {
+//       setErrors(validationErrors);
+//     }
+//   };
 
-  return (
-    <div className="form-wrapper">
-      <form onSubmit={handleSubmit} className="calories-form">
-        {/* Input alanları buraya gelecek */}
-        <button type="submit" className="submit-btn">
-          Start losing weight
-        </button>
-      </form>
+//   return (
+//     <div className="calories-form-container">
+//       <form onSubmit={handleSubmit}>
+//         {/* Form Inputları buraya gelecek (Height, Age vb.) */}
+//         <button type="submit" className="orange-btn">
+//           Start losing weight
+//         </button>
+//       </form>
 
-      {/* Modal içinde DailyCalorieIntake bileşeni */}
-      {showModal && (
-        <Modal onClose={() => setShowModal(false)}>
-          <DailyCalorieIntake data={formData} />
-        </Modal>
-      )}
-    </div>
-  );
-}
+//       {/* Yönerge: İçerisinde DailyCalorieIntake olan Modal */}
+//       {showModal && (
+//         <Modal onClose={() => setShowModal(false)}>
+//           <DailyCalorieIntake data={formData} />
+//         </Modal>
+//       )}
+//     </div>
+//   );
+// }
