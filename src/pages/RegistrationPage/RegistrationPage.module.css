@@ -12,11 +12,42 @@
   margin: 0 auto;
   width: 100%;
   max-width: 1280px;
-  z-index: 1;
+  z-index: 10; /* Formun her zaman üstte kalmasını sağlar */
+  position: relative;
 }
 
-/* Arka Plan Dekorasyonları (Slim Mom Stili) */
-@media screen and (min-width: 768px) {
+/* Masaüstü ve Geniş Ekranlar İçin Düzenleme */
+@media screen and (min-width: 1280px) {
+  .pageWrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Resim yolu senin projene göre kalsın */
+    background-image: url('../../assets/images/backgroundimage3px.webp'); 
+    background-repeat: no-repeat;
+    
+    /* ÖNEMLİ DEĞİŞİKLİKLER BURADA: */
+    /* Resmin sağdan %20 içeride durmasını sağlar (formun yanına yaklaştırır) */
+    background-position: right -150px top 0; 
+    /* Resmin boyutunu büyütür, böylece formu daha çok kaplar */
+    background-size: contain; 
+    
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .container {
+    padding-top: 160px;
+    margin-left: 100px; /* Formu biraz daha sola çekmek için */
+  }
+}
+
+/* Tablet Görünümü İçin */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .pageWrapper::after {
     content: '';
     position: absolute;
@@ -24,26 +55,10 @@
     right: 0;
     width: 100%;
     height: 100%;
-    background-image: url('../../assets/images/authRegister.png'); /* Görsel yolunu kontrol et */
+    background-image: url('../../assets/images/backgroundimage3px.webp');
     background-repeat: no-repeat;
     background-position: bottom right;
+    background-size: 80%; /* Tablete göre biraz küçültme */
     z-index: 0;
-    pointer-events: none;
-  }
-  
-  .container {
-    padding: 0 32px;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .pageWrapper::after {
-    background-image: url('../../assets/images/authRegister.png');
-    background-position: right top;
-  }
-  
-  .container {
-    padding: 0 16px;
-    padding-top: 160px; /* Üstten boşluk */
   }
 }
