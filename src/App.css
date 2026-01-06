@@ -21,7 +21,58 @@ html, body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: var(--bg-gray);
+  background-color: #ffffff;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Auth pages background (Login, Register) */
+.App.auth-page {
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Tablet: 768px - 1279px */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .App.auth-page {
+    background-image: url('/src/img/tablet-login.jpg');
+  }
+}
+
+/* Desktop: 1280px and above */
+@media screen and (min-width: 1280px) {
+  .App.auth-page {
+    background-image: url('/src/img/loginbg.jpg');
+  }
+}
+
+/* Main page background */
+.App.main-page-bg {
+  background-size: 100% 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Tablet: 768px - 1279px */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .App.main-page-bg {
+    background-image: url('/src/img/tablet-login.jpg');
+  }
+}
+
+/* Desktop: 1280px and above */
+@media screen and (min-width: 1280px) {
+  .App.main-page-bg {
+    background-image: url('/src/img/loginbg.jpg');
+  }
 }
 
 .app-main {
@@ -29,33 +80,14 @@ html, body {
   width: 100%;
 }
 
-/* Backgrounds for Auth pages moved here */
-.auth-background {
-  min-height: 100vh;
-}
-
-/* Tablet Background */
-@media (min-width: 768px) and (max-width: 1279px) {
-  .auth-background {
-    background-image: 
-      url('/src/img/leavesLoginTablet@1x.png'),
-      url('/src/img/strawberry@1x.png'),
-      url('/src/img/banana@1x.png');
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: -5px -195px, 435px 315px, 210px 540px;
-    background-attachment: fixed;
+/* Desktop: max-height 100vh, no page scroll */
+@media screen and (min-width: 1280px) {
+  .App {
+    max-height: 100vh;
+    overflow: hidden;
   }
-}
-
-/* Desktop Background */
-@media (min-width: 1280px) {
-  .auth-background {
-    background-image: 
-      url('/src/img/leavesLogin@1x.png'),
-      url('/src/img/strawberry@1x.png'),
-      url('/src/img/banana@1x.png');
-    background-repeat: no-repeat, no-repeat, no-repeat;
-    background-position: 256px -46px, right 170px, 740px 341px;
-    background-attachment: fixed;
+  
+  .app-main {
+    overflow: hidden;
   }
 }

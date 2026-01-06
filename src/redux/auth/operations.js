@@ -94,6 +94,7 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+    const persistedUser = state.auth.user;
 
     if (!persistedToken) {
       return thunkAPI.rejectWithValue("Token not found");
@@ -101,9 +102,19 @@ export const refreshUser = createAsyncThunk(
 
     try {
       setAuthHeader(persistedToken);
-      const response = await axios.get("/user/products");
-      return null;
+      // Validate token by making a request
+      await axios.get("/user/products");
+      // If successful, return persisted user data
+      return {
+        user: persistedUser,
+        token: persistedToken
+      };
     } catch (error) {
+      // If token is invalid (401), clear auth state
+      if (error.response?.status === 401) {
+        clearAuthHeader();
+        return thunkAPI.rejectWithValue("Token expired");
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }

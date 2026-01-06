@@ -1,14 +1,12 @@
 .header {
   width: 100%;
-  background: #ffffff;
+  background: transparent;
   position: relative;
   z-index: 10;
 }
 
 .headerContainer {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 100px 20px 20px 120px; 
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -78,11 +76,14 @@
   margin-left: auto;
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .userName {
   font-weight: 700;
   color: #212121;
+  font-family: 'Verdana', sans-serif;
+  font-size: 14px;
 }
 
 .logoutBtn {
@@ -90,42 +91,64 @@
   border: none;
   color: #9b9faa;
   font-weight: 700;
+  font-family: 'Verdana', sans-serif;
+  font-size: 14px;
   cursor: pointer;
-  margin-left: 20px;
   padding: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 .logoutBtn:hover {
   color: #fc842d;
 }
 
-/* Tablet styles (768px - 1279px) */
-@media screen and (min-width: 768px) and (max-width: 1279px) {
-  .header {
-    border-bottom: 2px solid #E0E0E0;
-  }
-
+/* 320px and above - 20px padding on all sides */
+@media screen and (min-width: 320px) {
   .headerContainer {
-    padding: 16px 32px;
-    justify-content: space-between;
-  }
-
-  .nav {
-    margin-left: auto;
-    gap: 20px;
-  }
-  .authNav {
-    margin-left: 400px; 
-    display: flex;
-    gap: 20px;
-    padding-top: 0; 
-    align-items: center;
-    white-space: nowrap;
+    padding: 20px;
+    box-sizing: border-box;
   }
 }
 
-/* Mobile styles (350px - 767px) */
-@media screen and (min-width: 350px) and (max-width: 767px) {
+/* Phone: 320px - 767px - Logo on left, menu items on right */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .logoNavContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Tablet: 768px - 1279px - 20px top, 32px left and right */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .headerContainer {
+    padding: 20px 32px;
+    box-sizing: border-box;
+  }
+  
+  .logoNavContainer {
+    width: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* Desktop: 1280px and above - 80px top, 16px left and right */
+@media screen and (min-width: 1280px) {
+  .headerContainer {
+    padding: 80px 16px 0 16px;
+    box-sizing: border-box;
+  }
+  
+  .logoNavContainer {
+    width: auto;
+    justify-content: flex-start;
+  }
+}
+
+/* Phone: 320px - 767px */
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .header {
     border-bottom: 2px solid #E0E0E0;
   }
@@ -142,13 +165,6 @@
     display: flex;
     gap: 15px;
     margin-left: 10px;
-  }
-  
-  .headerContainer {
-    padding: 20px;
-    justify-content: space-between;
-    width: 100%;
-    box-sizing: border-box;
   }
 }
 

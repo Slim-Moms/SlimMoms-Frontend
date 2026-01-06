@@ -1,5 +1,6 @@
 .diary-add-product-form {
   width: 100%;
+  margin-bottom: 60px;
 }
 
 .diary-form-inputs {
@@ -9,20 +10,42 @@
   flex-wrap: wrap;
 }
 
-.diary-form-inputs > .formInput {
+.diary-form-input-wrapper {
   flex: 1;
   min-width: 200px;
+  position: relative;
+}
+
+.diary-grams-input-wrapper {
+  width: 107px;
+  flex-shrink: 0;
+}
+
+.diary-form-input {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 5px 0;
+  outline: none;
+  font-family: 'Verdana', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  color: #212121;
+  background: transparent;
+}
+
+.diary-form-input:focus {
+  border-bottom: 1px solid #FC842D;
+}
+
+.diary-form-input::placeholder {
+  color: #9b9faa;
 }
 
 .diary-grams-wrapper {
   display: flex;
   gap: 10px;
   align-items: flex-end;
-}
-
-.diary-grams-wrapper > .formInput {
-  width: 107px;
-  flex-shrink: 0;
 }
 
 .diary-add-button-plus {
@@ -89,13 +112,18 @@
   background-color: #F5F5F5;
 }
 
-@media screen and (max-width: 767px) {
+/* Phone: 320px - 767px */
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .diary-add-product-form {
+    margin-bottom: 20px;
+  }
+  
   .diary-form-inputs {
     flex-direction: column;
     gap: 20px;
   }
 
-  .diary-form-inputs > .formInput {
+  .diary-form-input-wrapper {
     width: 100%;
     min-width: auto;
   }
@@ -104,7 +132,7 @@
     width: 100%;
   }
 
-  .diary-grams-wrapper > .formInput {
+  .diary-grams-input-wrapper {
     flex: 1;
     width: auto;
   }

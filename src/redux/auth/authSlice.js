@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logout, refreshUser } from "./operations";
+import { REHYDRATE } from "redux-persist";
 
 const initialState = {
   user: { name: null, email: null },
@@ -21,9 +22,20 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+      .addCase(REHYDRATE, (state, action) => {
+        if (action.payload?.auth?.token) {
+          state.token = action.payload.auth.token;
+          state.user = action.payload.auth.user || { name: null, email: null };
+          state.isLoggedIn = !!action.payload.auth.token;
+        }
+      })
       .addCase(login.fulfilled, (state, action) => {
         const payload = action.payload;
         state.token = payload.token || payload.accessToken || null;
+        state.user = {
+          name: payload.user?.name || payload.name || "",
+          email: payload.user?.email || payload.email || "",
+        };
         state.isLoggedIn = !!state.token;
       })
       .addCase(register.fulfilled, (state, action) => {
@@ -45,20 +57,20 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         const payload = action.payload;
-        const userData = payload?.user || payload;
-        const name = userData?.name || userData?.username || "";
-        const email = userData?.email || "";
-        
-        if (name) {
-          state.user = {
-            name: name,
-            email: email,
-          };
+        // Keep existing user data or use payload
+        if (payload?.user) {
+          state.user = payload.user;
         }
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
-      .addCase(refreshUser.rejected, (state) => {
+      .addCase(refreshUser.rejected, (state, action) => {
+        // If token expired, clear auth state
+        if (action.payload === "Token expired") {
+          state.user = { name: null, email: null };
+          state.token = null;
+          state.isLoggedIn = false;
+        }
         state.isRefreshing = false;
       });
   },

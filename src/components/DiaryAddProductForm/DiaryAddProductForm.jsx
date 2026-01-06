@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addDiaryProduct, searchProducts } from '../../redux/diet/dietOperations';
 import { fetchDiaryProductsByDate } from '../../redux/diet/dietOperations';
 import { selectSelectedDate } from '../../redux/diet/dietSelectors';
-import styles from '../CalculatorCalorieForm/CalculatorCalorieForm.module.css';
 import './DiaryAddProductForm.css';
 
 const DiaryAddProductForm = () => {
@@ -106,11 +105,9 @@ const DiaryAddProductForm = () => {
   };
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.container}>
-        <form className="diary-add-product-form" onSubmit={handleSubmit}>
+    <form className="diary-add-product-form" onSubmit={handleSubmit}>
           <div className="diary-form-inputs">
-            <div className={styles.formInput} style={{ position: 'relative' }}>
+            <div className="diary-form-input-wrapper" style={{ position: 'relative' }}>
               <input
                 ref={inputRef}
                 type="text"
@@ -126,7 +123,7 @@ const DiaryAddProductForm = () => {
                     setShowSuggestions(true);
                   }
                 }}
-                className={styles.field}
+                className="diary-form-input"
               />
               {showSuggestions && suggestions.length > 0 && (
                 <div ref={suggestionsRef} className="diary-suggestions">
@@ -143,7 +140,7 @@ const DiaryAddProductForm = () => {
               )}
             </div>
             <div className="diary-grams-wrapper">
-              <div className={styles.formInput}>
+              <div className="diary-grams-input-wrapper">
                 <input
                   type="number"
                   placeholder="Grams"
@@ -152,7 +149,7 @@ const DiaryAddProductForm = () => {
                     setWeight(e.target.value);
                     setError('');
                   }}
-                  className={styles.field}
+                  className="diary-form-input"
                   min="1"
                   step="1"
                 />
@@ -167,9 +164,7 @@ const DiaryAddProductForm = () => {
               {error}
             </div>
           )}
-        </form>
-      </div>
-    </div>
+    </form>
   );
 };
 

@@ -1,7 +1,9 @@
-import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React, { Suspense, lazy, useEffect, useRef } from 'react';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectIsLoading } from './redux/loader/loaderSelectors';
+import { selectIsLoggedIn, selectIsRefreshing, selectToken } from './redux/auth/selectors';
+import { refreshUser } from './redux/auth/operations';
 import './App.css';
 
 
@@ -16,12 +18,35 @@ const RegistrationPage = lazy(() => import('./pages/RegistrationPage/Registratio
 const MainPage = lazy(() => import('./pages/MainPage/MainPage'));
 const DiaryPage = lazy(() => import('./pages/DiaryPage/DiaryPage'));
 
-const App = () => {
+const AppContent = () => {
   const isLoading = useSelector(selectIsLoading);
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const isRefreshing = useSelector(selectIsRefreshing);
+  const token = useSelector(selectToken);
+  const dispatch = useDispatch();
+  const hasCheckedAuth = useRef(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    // Only check once on mount if we have a token but are not logged in
+    if (!hasCheckedAuth.current && token && !isLoggedIn && !isRefreshing) {
+      hasCheckedAuth.current = true;
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token, isLoggedIn, isRefreshing]);
+
+  const getAppClass = () => {
+    const path = location.pathname;
+    if (path === '/login' || path === '/registration') {
+      return 'App auth-page';
+    } else if (path === '/') {
+      return 'App main-page-bg';
+    }
+    return 'App';
+  };
 
   return (
-    <BrowserRouter>
-    <div className="App">
+    <div className={getAppClass()}>
       <Header />
       
       {isLoading && <Loader />}
@@ -52,7 +77,14 @@ const App = () => {
       </main>
 
     </div>
-      </BrowserRouter>
+  );
+};
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <AppContent />
+    </BrowserRouter>
   );
 };
 

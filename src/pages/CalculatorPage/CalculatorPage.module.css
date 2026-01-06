@@ -2,24 +2,27 @@
 .page {
   min-height: 100vh;
   background-color: #ffffff;
-  padding: 20px;
-  position: relative;
+  padding: 32px;
 }
 
 .pageContainer {
   display: flex;
-  flex-direction: column;
-  gap: 30px;
-  max-width: 1400px;
+  flex-direction: row;
+  gap: 40px;
+  /* max-width: 1400px; */
   margin: 0 auto;
+  align-items: flex-start;
 }
 
 .calculatorSection {
-  flex: 1;
+  width: 60%;
 }
 
 .sidebarSection {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
 }
 
 /* Modal Styles */
@@ -173,10 +176,15 @@
   box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
 }
 
-/* Responsive Design */
-@media (max-width: 767px) {
+/* Responsive Design - Phone: 320px - 767px */
+@media screen and (min-width: 320px) and (max-width: 767px) {
   .page {
-    padding: 10px;
+    padding: 20px;
+  }
+  
+  .pageContainer {
+    flex-direction: column;
+    gap: 20px;
   }
   
   .modalContent {
@@ -221,18 +229,23 @@
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
+/* Tablet: 768px - 1279px */
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .page {
+    padding: 32px;
+  }
+  
   .pageContainer {
     flex-direction: row;
+    gap: 40px;
   }
   
   .calculatorSection {
-    flex: 2;
+    width: 60%;
   }
   
   .sidebarSection {
-    flex: 1;
-    max-width: 350px;
+    width: 40%;
   }
   
   .modalTitle {
@@ -248,22 +261,29 @@
   }
 }
 
-@media (min-width: 1280px) {
+/* Desktop: 1280px and above */
+@media screen and (min-width: 1280px) {
+  .page {
+    max-height: 100vh;
+    overflow: hidden;
+  }
+  
   .pageContainer {
     flex-direction: row;
     gap: 40px;
+    overflow: visible;
   }
   
   .calculatorSection {
-    flex: 3;
+    width: 60%;
+    padding-right: 148px;
   }
   
   .sidebarSection {
-    flex: 1;
-    max-width: 400px;
+    width: 40%;
   }
   
   .page {
-    padding: 40px;
+    padding: 32px;
   }
 }

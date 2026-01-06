@@ -25,32 +25,26 @@ const CalculatorCalorieForm = ({ onSubmit, initialValues, hideTitle }) => {
           {({ values }) => (
             <Form className={styles.formContainer}>
               <div className={styles.formWrapper}>
-                
-                {/* Left Column */}
-                <div className={styles.inputColumn}>
+                {/* Row 1: Height - Desired weight */}
+                <div className={styles.formRow}>
                   <div className={styles.formInput}>
                     <Field name="height" placeholder="Height *" className={styles.field} />
                     <ErrorMessage name="height" component="div" className={styles.fieldError} />
                   </div>
                   <div className={styles.formInput}>
-                    <Field name="age" placeholder="Age *" className={styles.field} />
-                    <ErrorMessage name="age" component="div" className={styles.fieldError} />
-                  </div>
-                  <div className={styles.formInput}>
-                    <Field name="weight" placeholder="Current weight *" className={styles.field} />
-                    <ErrorMessage name="weight" component="div" className={styles.fieldError} />
-                  </div>
-                </div>
-
-                {/* Right Column */}
-                <div className={styles.inputColumn}>
-                  <div className={styles.formInput}>
                     <Field name="desiredWeight" placeholder="Desired weight *" className={styles.field} />
                     <ErrorMessage name="desiredWeight" component="div" className={styles.fieldError} />
                   </div>
+                </div>
 
+                {/* Row 2: Age - Blood type */}
+                <div className={styles.formRow}>
+                  <div className={styles.formInput}>
+                    <Field name="age" placeholder="Age *" className={styles.field} />
+                    <ErrorMessage name="age" component="div" className={styles.fieldError} />
+                  </div>
                   <div className={styles.radioWrapper}>
-                    <div style={{color: '#9b9faa', fontWeight: '700', fontSize: '14px', marginBottom: '10px'}}>Blood Type *</div>
+                    <div className={styles.radioLabel}>Blood type *</div>
                     <div className={styles.radioGroup}>
                       {['1', '2', '3', '4'].map((type) => (
                         <label key={type} className={styles.formRadio}>
@@ -66,6 +60,14 @@ const CalculatorCalorieForm = ({ onSubmit, initialValues, hideTitle }) => {
                       ))}
                     </div>
                     <ErrorMessage name="bloodType" component="div" className={styles.fieldError} />
+                  </div>
+                </div>
+
+                {/* Row 3: Current weight */}
+                <div className={styles.formRow}>
+                  <div className={styles.formInput}>
+                    <Field name="weight" placeholder="Current weight *" className={styles.field} />
+                    <ErrorMessage name="weight" component="div" className={styles.fieldError} />
                   </div>
                 </div>
               </div>

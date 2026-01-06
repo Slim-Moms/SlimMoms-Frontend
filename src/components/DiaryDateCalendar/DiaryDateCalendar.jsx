@@ -6,7 +6,6 @@ import { fetchDiaryProductsByDate } from '../../redux/diet/dietOperations';
 import { selectSelectedDate } from '../../redux/diet/dietSelectors';
 import { FaCalendar } from 'react-icons/fa';
 import 'react-calendar/dist/Calendar.css';
-import styles from '../CalculatorCalorieForm/CalculatorCalorieForm.module.css';
 import './DiaryDateCalendar.css';
 
 const DiaryDateCalendar = () => {
@@ -51,27 +50,23 @@ const DiaryDateCalendar = () => {
   const displayDate = selectedDate ? formatDate(new Date(selectedDate)) : formatDate(new Date());
 
   return (
-    <div className={styles.calculator}>
-      <div className={styles.container}>
-        <div className="diary-date-calendar">
-          <div className="diary-date-display">
-            <span>{displayDate}</span>
-            <FaCalendar 
-              className="diary-calendar-icon" 
-              onClick={() => setIsOpen(!isOpen)}
-            />
-          </div>
-          {isOpen && (
-            <div className="diary-calendar-wrapper">
-              <Calendar
-                onChange={onChange}
-                value={value}
-                locale="en-US"
-              />
-            </div>
-          )}
-        </div>
+    <div className="diary-date-calendar">
+      <div className="diary-date-display">
+        <span>{displayDate}</span>
+        <FaCalendar 
+          className="diary-calendar-icon" 
+          onClick={() => setIsOpen(!isOpen)}
+        />
       </div>
+      {isOpen && (
+        <div className="diary-calendar-wrapper">
+          <Calendar
+            onChange={onChange}
+            value={value}
+            locale="en-US"
+          />
+        </div>
+      )}
     </div>
   );
 };

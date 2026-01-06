@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
-  background-color: #ffffff; 
+  background-color: transparent; 
   overflow: hidden;
   margin-top: -160px; 
   padding-top: 160px;
@@ -12,17 +12,23 @@
 .container {
   position: relative;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
   padding: 0 20px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   z-index: 2;
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
 }
 
 .hero-section {
   padding-top: 40px; 
   max-width: 600px;
+  width: 100%;
+  padding-left: 16px;
+  box-sizing: border-box;
 }
 
 .hero-title {
@@ -35,22 +41,7 @@
 }
 
 
-.main-page::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url('../../img/Group41@1x.png');
-  background-repeat: no-repeat;
-  background-position: right center; 
-  background-size: 60% auto; 
-  z-index: 20; 
-  pointer-events: none;
-}
-
-/* Tablet styles (768px - 1279px) */
+/* Tablet: 768px - 1279px */
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .main-page {
     margin-top: 0; 
@@ -59,22 +50,28 @@
   }
 
   .hero-section {
-    padding-top: 60px; 
+    padding: 32px;
     max-width: 100%;
-  }
-
-  .main-page::after {
-    background-image: url('../../img/Group40@2x.png');
-    background-size: auto 85%;
-    background-position: bottom right;
-    bottom: 0;
-    top: auto;
-    z-index: 1;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .container {
     z-index: 2;
     padding: 0 32px;
+    align-items: flex-start;
+  }
+}
+
+/* 880px - 1279px - Reduce side padding */
+@media screen and (min-width: 880px) and (max-width: 1279px) {
+  .container {
+    padding: 0;
+  }
+
+  .hero-section {
+    padding: 32px 0;
+    max-width: 100%;
   }
 }
 
@@ -83,20 +80,20 @@
   .main-page {
     margin-top: -130px; 
     padding-top: 130px;
-    background-color: #ffffff;
+    background-color: transparent;
   }
 
   .hero-section {
-    padding-top: 0; 
+    padding-top: 32px; 
     padding-bottom: 40px;
     max-width: 100%;
-  }
-
-  .main-page::after {
-    display: none; 
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 100%;
   }
 
   .container {
-    padding: 0 20px;
+    padding: 0;
+    align-items: flex-start;
   }
 }

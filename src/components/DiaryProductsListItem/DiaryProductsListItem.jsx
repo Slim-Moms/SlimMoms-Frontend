@@ -24,7 +24,7 @@ const DiaryProductsListItem = ({ product }) => {
     <div className="diary-products-list-item">
       <div className="diary-product-info">
         <span className="diary-product-name">{product.productName || product.name}</span>
-        <span className="diary-product-weight">{product.weight}g</span>
+        <span className="diary-product-weight">{product.weight} g</span>
         <span className="diary-product-calories">
           {product.calories ? `${product.calories} kcal` : ''}
         </span>
