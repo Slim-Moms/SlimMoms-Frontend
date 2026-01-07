@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import CalculatorCalorieForm from "../../components/CalculatorCalorieForm/CalculatorCalorieForm";
 import RightSideBar from "../../components/RightSideBar/RightSideBar";
 import Loader from "../../components/Loader/Loader";
@@ -9,10 +10,14 @@ import styles from "./CalculatorPage.module.css";
 
 const CalculatorPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isLoading = useSelector(selectIsLoading);
 
   const handleSubmit = async (values) => {
-    await dispatch(fetchDailyRate(values));
+    const result = await dispatch(fetchDailyRate(values));
+    if (fetchDailyRate.fulfilled.match(result)) {
+      navigate("/diary");
+    }
   };
 
   return (
